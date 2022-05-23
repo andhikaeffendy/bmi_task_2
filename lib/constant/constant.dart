@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 
-const Color appBarColor = Color(0xff0a0e21);
+const Color appBarColor = Colors.white;
 const Color genderSelectedColor = Color(0xff272A4E);
 const Color genderTextColor = Colors.white;
 const Color buttonColor = Color(0xffEC3C66);
-const TextStyle appBarStyle = TextStyle(fontSize: 16, color: Colors.white);
+const TextStyle appBarStyle = TextStyle(fontSize: 20, color: Colors.black54);
+const TextStyle boldStyle =
+    TextStyle(fontSize: 20, color: Colors.black, fontWeight: FontWeight.bold);
 const TextStyle genderStyle = TextStyle(fontSize: 20, color: genderTextColor);
 const TextStyle buttonStyle =
     TextStyle(fontSize: 25, color: Colors.white, fontWeight: FontWeight.bold);

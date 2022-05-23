@@ -2,7 +2,7 @@ import 'package:bmi_project/constant/constant.dart';
 
 class BmiCalculator {
   int? height;
-  int? weight;
+  double? weight;
   double? bmi;
   String? bmiCategory;
   String? bmiDescription;

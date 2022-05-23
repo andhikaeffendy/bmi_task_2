@@ -1,7 +1,9 @@
 import 'package:bmi_project/constant/constant.dart';
-import 'package:bmi_project/model/bmi_calculator.dart';
-import 'package:bmi_project/screen/widget/bmi_widget.dart';
+import 'package:bmi_project/helper/bmi_calculator.dart';
+import 'package:bmi_project/screen/ui/bmi_gender.dart';
 import 'package:flutter/material.dart';
+
+import '../../helper/global_widget.dart';
 
 class ResultScreen extends StatelessWidget {
   final double bmi;
@@ -16,64 +18,100 @@ class ResultScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: appBarColor,
       appBar: AppBar(
-        title: const Text(
-          "Result BMI",
-          style: appBarStyle,
-        ),
-      ),
-      body: Column(
-        children: [
-          Expanded(
-              child: Center(
-            child: Text(
-              "Your Result",
-              textAlign: TextAlign.start,
-              style: genderStyle.copyWith(
-                  fontSize: 50, fontWeight: FontWeight.bold),
-            ),
-          )),
-          Expanded(
-              flex: 5,
-              child: BmiWidget(
-                widget: Container(
-                  width: double.infinity,
-                  padding: const EdgeInsets.symmetric(horizontal: 15),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Text(
-                        bmiCalculator.bmiCategory ?? "",
-                        style: labelTextStyle.copyWith(
-                            color: Colors.green, fontWeight: FontWeight.bold),
-                      ),
-                      Text(
-                        bmi.toStringAsFixed(1),
-                        style: heightTextStyle.copyWith(fontSize: 100),
-                      ),
-                      Text(
-                        bmiCalculator.bmiDescription ?? "",
-                        textAlign: TextAlign.center,
-                        style: labelTextStyle.copyWith(fontSize: 15),
-                      ),
-                    ],
-                  ),
-                ),
-              )),
-          InkWell(
-            onTap: () => Navigator.pop(context),
-            child: Container(
-              height: 60,
-              width: double.infinity,
-              color: buttonColor,
-              child: const Center(
-                child: Text(
-                  "RE-CALCULATE",
-                  style: buttonStyle,
-                ),
+          automaticallyImplyLeading: false,
+          elevation: 0,
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                "Your ".toUpperCase(),
+                style: appBarStyle,
               ),
+              Text(
+                "summary".toUpperCase(),
+                style: boldStyle,
+              ),
+            ],
+          )),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Container(
+            width: MediaQuery.of(context).size.width * 0.8,
+            padding: const EdgeInsets.all(16),
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(16),
+                color: Colors.white,
+                boxShadow: const [
+                  BoxShadow(
+                      color: Colors.grey,
+                      blurRadius: 6.0,
+                      offset: Offset(1.0, 3.0))
+                ]),
+            child: Column(
+              children: [
+                Text(
+                  "Your BMI is",
+                  style: boldStyle.copyWith(
+                      fontSize: 24, color: Colors.blueGrey[300]),
+                ),
+                Text(
+                  bmi.toStringAsFixed(1),
+                  style: heightTextStyle.copyWith(
+                      fontSize: 100, color: Colors.blueGrey[300]),
+                ),
+                Text(
+                  "kg/m2",
+                  style: boldStyle.copyWith(
+                      fontSize: 14,
+                      color: Colors.blueGrey[300],
+                      fontWeight: FontWeight.normal),
+                ),
+                const SizedBox(
+                  height: 16,
+                ),
+                Text(
+                  bmiCalculator.bmiCategory ?? "",
+                  style: boldStyle.copyWith(
+                      fontSize: 14, color: Colors.blueGrey[300]),
+                ),
+                const SizedBox(
+                  height: 16,
+                )
+              ],
             ),
-          )
+          ),
+          const SizedBox(
+            height: 16,
+          ),
+          Text(
+            bmiCalculator.bmiDescription ?? "",
+            textAlign: TextAlign.center,
+            style:
+                boldStyle.copyWith(fontSize: 20, color: Colors.blueGrey[300]),
+          ),
+          const SizedBox(
+            height: 16,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              MaterialButton(
+                  child: buttonBack(context),
+                  onPressed: () => Navigator.pop(context)),
+              MaterialButton(
+                child: buttonBMI(context, "Reset BMI"),
+                onPressed: () {
+                  Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const BmiGenderScreen(),
+                      ),
+                      (Route<dynamic> route) => false);
+                },
+              ),
+            ],
+          ),
         ],
       ),
     );

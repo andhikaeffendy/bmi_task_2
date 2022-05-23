@@ -1,5 +1,5 @@
 import 'package:bmi_project/constant/constant.dart';
-import 'package:bmi_project/screen/ui/bmi_screen.dart';
+import 'package:bmi_project/screen/ui/bmi_gender.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
           primaryColor: appBarColor,
           appBarTheme: const AppBarTheme(backgroundColor: appBarColor)),
-      home: const BmiScreen(),
+      home: const BmiGenderScreen(),
     );
   }
 }
