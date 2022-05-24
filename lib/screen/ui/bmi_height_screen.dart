@@ -6,7 +6,8 @@ import '../../constant/constant.dart';
 import '../../helper/global_widget.dart';
 
 class BmiHeightScreen extends StatefulWidget {
-  const BmiHeightScreen({Key? key}) : super(key: key);
+  String? gender;
+  BmiHeightScreen({Key? key, this.gender}) : super(key: key);
 
   @override
   State<BmiHeightScreen> createState() => _BmiHeightScreenState();
@@ -43,6 +44,10 @@ class _BmiHeightScreenState extends State<BmiHeightScreen> {
               currentHeightTextColor: Colors.blueGrey[300],
               numberLineColor: Colors.blueGrey[300],
               onChange: (val) => setState(() => height = val),
+              accentColor: Colors.blueGrey[300],
+              personImagePath: widget.gender == "male"
+                  ? "assets/man_toilet.svg"
+                  : "assets/female_icon.svg",
               unit: 'cm', // optional
             ),
           ),

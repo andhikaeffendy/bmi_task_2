@@ -1,3 +1,4 @@
+import 'package:bmi_project/helper/global_widget.dart';
 import 'package:bmi_project/screen/ui/bmi_height_screen.dart';
 import 'package:bmi_project/screen/widget/gender_selector_widget.dart';
 import 'package:flutter/material.dart';
@@ -38,10 +39,10 @@ class _BmiGenderScreenState extends State<BmiGenderScreen> {
           mainAxisSize: MainAxisSize.max,
           children: [
             InkWell(
-                onTap: () => Navigator.push(
+                onTap: () => nextPage(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const BmiHeightScreen(),
+                      builder: (context) => BmiHeightScreen(gender: "male"),
                     )),
                 child: GenderSelectorWidget(
                     image: "assets/male_icon.jpg", gender: "Male")),
@@ -52,7 +53,7 @@ class _BmiGenderScreenState extends State<BmiGenderScreen> {
               onTap: () => Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const BmiHeightScreen(),
+                    builder: (context) => BmiHeightScreen(gender: "female"),
                   )),
               child: GenderSelectorWidget(
                 image: "assets/female_icon.jpg",
